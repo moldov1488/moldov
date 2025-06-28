@@ -31,6 +31,23 @@
             line-height: 1.6;
         }
 
+        /* Animação para o .xyz */
+        @keyframes xyzPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo .xyz-animated {
+            background: linear-gradient(90deg, #F7931A, #FFD700, #FF8C00, #F7931A);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: xyzPulse 3s ease infinite;
+            font-weight: bold;
+        }
+
         /* Header Hero */
         .hero {
             background: var(--darker);
@@ -542,7 +559,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <nav>
-            <a href="#" class="logo">Moldov<span>.</span>xyz</a>
+            <a href="#" class="logo">Moldov<span class="xyz-animated">.xyz</span></a>
             <div class="nav-links">
                 <a href="#bitcoin">Bitcoin</a>
                 <a href="#treinamento">Treinamento</a>
@@ -705,7 +722,6 @@
                 
                 <div class="contact-method">
                     <h3>Contato para Consultoria</h3>
-                    <p>Email seguro (ProtonMail):</p>
                     <a href="mailto:amogoticas@proton.me" class="contact-email">amogoticas@proton.me</a>
                 </div>
                 
@@ -721,8 +737,8 @@
                 </div>
                 
                 <div class="contact-tip">
-                    <p>Para mensagens adversas ou doações:</p>
-                    <p><strong>livetip.gg/moldov</strong></p>
+                    <p>Para mensagens adversas:</p>
+                    <p><strong><a href="https://livetip.gg/moldov" style="color: var(--primary);">livetip.gg/moldov</a></strong></p>
                 </div>
             </div>
         </div>
