@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moldov - Bitcoin e Liberdade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #F7931A; /* Laranja Bitcoin */
+            --primary-dark: #E07C00;
+            --dark: #121212;
+            --darker: #0A0A0A;
+            --light: #F5F5F5;
+            --accent: #FF5555;
+            --success: #00C853;
+            --youtube-red: #FF0000;
+            --youtube-dark: #CC0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Header Hero */
+        .hero {
+            background: var(--darker);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                background: linear-gradient(135deg, var(--darker) 0%, rgba(18,18,18,0.9) 100%), 
+                            url('') center/cover;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            z-index: 10;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 5%;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 147, 26, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 147, 26, 0.3);
+        }
+
+        .btn-youtube {
+            background-color: var(--youtube-red);
+            color: white;
+        }
+
+        .btn-youtube:hover {
+            background-color: var(--youtube-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Main Sections */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* Course Section */
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: linear-gradient(145deg, #1E1E1E, #2A2A2A);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* Bitcoin Training Section - Nova seção elaborada */
+        .training-section {
+            background: linear-gradient(135deg, var(--darker) 0%, rgba(10,10,10,0.95) 100%);
+        }
+
+        .training-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .training-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            background: rgba(247, 147, 26, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(247, 147, 26, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .training-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefit-list {
+            list-style-type: none;
+            margin: 2rem 0;
+        }
+
+        .benefit-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .benefit-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+
+        .offer-card {
+            background: linear-gradient(145deg, #1E1E1E, #2A2A2A);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 600px;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: "OFERTA LIMITADA";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.2rem;
+        }
+
+        .price-new {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .price-installments {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 200, 83, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            border: 1px solid var(--success);
+        }
+
+        /* YouTube Section */
+        .youtube-section {
+            background: linear-gradient(135deg, var(--darker) 0%, rgba(10,10,10,0.95) 100%);
+        }
+
+        .youtube-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .youtube-card {
+            background: linear-gradient(145deg, #1E1E1E, #2A2A2A);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            transition: transform 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .youtube-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--darker) 0%, rgba(18,18,18,0.95) 100%);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, #1E1E1E, #2A2A2A);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-method {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-method p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-email {
+            color: var(--primary);
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .contact-tip {
+            background: rgba(247, 147, 26, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(247, 147, 26, 0.3);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .training-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .training-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <nav>
+            <a href="#" class="logo">Moldov<span>.</span>xyz</a>
+            <div class="nav-links">
+                <a href="#bitcoin">Bitcoin</a>
+                <a href="#treinamento">Treinamento</a>
+                <a href="#youtube">YouTube</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Liberdade Financeira <span>com Bitcoin</span></h1>
+            <p>Desperte para a verdadeira liberdade política e econômica. O sistema está quebrado - nós temos a solução.</p>
+            <div class="cta-buttons">
+                <a href="#treinamento" class="btn btn-primary">Treinamento Bitcoin Blackpill</a>
+                <a href="#youtube" class="btn btn-youtube"><i class="fab fa-youtube"></i> Ver Canal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bitcoin Section -->
+    <section id="bitcoin">
+        <h2 class="section-title">Por que <span>Bitcoin</span>?</h2>
+        <div class="course-container">
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-unlock-alt"></i>
+                </div>
+                <h3>Soberania Individual</h3>
+                <p>Bitcoin é a única forma de dinheiro verdadeiramente livre de controle governamental e manipulação bancária.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Proteção Contra Inflação</h3>
+                <p>Enquanto governos imprimem dinheiro sem controle, Bitcoin tem oferta limitada - proteção perfeita contra a inflação.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-revolution"></i>
+                </div>
+                <h3>Revolução Silenciosa</h3>
+                <p>Adotar Bitcoin é participar da maior revolução pacífica contra o sistema financeiro global corrupto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treinamento Bitcoin Blackpill Section -->
+    <section id="treinamento" class="training-section">
+        <div class="training-header">
+            <h2 class="section-title">Treinamento <span>Bitcoin Blackpill</span></h2>
+            <p>Aprenda a adquirir Bitcoin e se proteger do sistema que drena seu dinheiro e controla sua liberdade.</p>
+            <p>Junte-se a +15 mil pessoas que já descobriram como escapar das regras feitas para te manter sempre no mesmo lugar.</p>
+        </div>
+
+        <div class="training-stats">
+            <div class="stat-item">
+                <div class="stat-number">+90H</div>
+                <div class="stat-label">Horas de conteúdo</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9.000+</div>
+                <div class="stat-label">Avaliações 5★</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Países</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">16.000+</div>
+                <div class="stat-label">Alunos livres</div>
+            </div>
+        </div>
+
+        <div class="training-content">
+            <h3 style="text-align: center; margin-bottom: 2rem;">O treinamento foi feito para você que:</h3>
+            
+            <ul class="benefit-list">
+                <li>Está cansado de ver seu dinheiro valer menos todos os dias</li>
+                <li>Sente que trabalha cada vez mais, mas sobra menos no final do mês</li>
+                <li>Quer guardar seu dinheiro sem risco de confisco ou controle externo</li>
+                <li>Percebe que o sistema foi feito para te manter sempre no mesmo lugar</li>
+                <li>Já entendeu que investimentos tradicionais não garantem liberdade</li>
+                <li>Sabe que o Bitcoin é a resposta, mas não sabe como começar</li>
+            </ul>
+
+            <div class="offer-card">
+                <p class="price-old">De R$ 500,00</p>
+                <p class="price-new">POR 12x de R$ 41,13</p>
+                <p class="price-installments">ou R$400 à vista</p>
+                
+                <a href="https://payfast.greenn.com.br/63152?cupom=MINHAHONRA20OFF&ch_id=12037" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                    QUERO VIVER LIVRE
+                </a>
+                
+                <div class="guarantee-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Garantia de 7 dias</span>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 3rem 0 1.5rem;">Com o curso Bitcoin Blackpill você:</h3>
+            
+            <ul class="benefit-list">
+                <li>Compreenderá o bitcoin e como comprá-lo com segurança</li>
+                <li>Aprenderá do básico até as práticas avançadas de autocustódia</li>
+                <li>Aprenderá as estratégias usadas pelos maiores especialistas</li>
+                <li>Entenderá como o Bitcoin será seu escudo contra a desvalorização</li>
+                <li>Saberá como ser seu próprio banco de forma independente</li>
+            </ul>
+
+            <p style="text-align: center; margin: 3rem 0; font-style: italic;">
+                "Esta pode ser sua ÚLTIMA CHANCE de comprar Bitcoin a um valor acessível. Nos próximos anos, o Bitcoin pode ultrapassar 1 milhão de dólares e nunca mais voltar para os valores de hoje."
+            </p>
+
+            <div style="text-align: center;">
+                <a href="https://payfast.greenn.com.br/63152?cupom=MINHAHONRA20OFF&ch_id=12037" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                    GARANTIR MEU ACESSO AGORA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="youtube" class="youtube-section">
+        <h2 class="section-title">Conteúdo no <span>YouTube</span></h2>
+        <div class="youtube-container">
+            <div class="youtube-card">
+                <h3>Inscreva-se no Canal</h3>
+                <p>Conteúdo diário sobre Bitcoin, liberdade política e análise do colapso do sistema atual.</p>
+                <a href="https://youtube.com/@molvod" class="btn btn-youtube" style="margin-top: 1.5rem;">
+                    <i class="fab fa-youtube"></i> Acessar Canal
+                </a>
+                
+                <div class="youtube-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>100+ Inscritos</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-video"></i>
+                        <span>10+ Vídeos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact-section">
+        <h2 class="section-title">Consultoria <span>Bitcoin</span></h2>
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3>Consultoria Técnica de Bitcoin</h3>
+                <p>Serviços especializados para quem busca verdadeira soberania financeira</p>
+                
+                <div class="contact-method">
+                    <h3>Contato para Consultoria</h3>
+                    <p>Email seguro (ProtonMail):</p>
+                    <a href="mailto:amogoticas@proton.me" class="contact-email">amogoticas@proton.me</a>
+                </div>
+                
+                <div class="contact-method">
+                    <h3>Tópicos de Consultoria</h3>
+                    <ul class="benefit-list" style="text-align: left;">
+                        <li>Montagem de carteiras hard wallets personalizadas</li>
+                        <li>Orientação para compra anônima de Bitcoin</li>
+                        <li>Estratégias avançadas de autocustódia</li>
+                        <li>Proteção contra confiscos e vigilância</li>
+                        <li>Métodos de herança para Bitcoin</li>
+                    </ul>
+                </div>
+                
+                <div class="contact-tip">
+                    <p>Para mensagens adversas ou doações:</p>
+                    <p><strong>livetip.gg/moldov</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#bitcoin">Bitcoin</a>
+            <a href="#treinamento">Treinamento</a>
+            <a href="#youtube">YouTube</a>
+            <a href="#contato">Consultoria</a>
+            <a href="#">Termos</a>
+            <a href="#">Privacidade</a>
+        </div>
+
+        <div class="social-links">
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-gab"></i></a>
+        </div>
+
+        <p class="copyright">© 2025 Moldov.xyz - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
